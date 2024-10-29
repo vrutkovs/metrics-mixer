@@ -32,3 +32,5 @@ vmctl prometheus --verbose \
   --vm-batch-size=200000 \
   --prom-concurrency=10 \
   --vm-extra-label prowjob=${EXTRALABEL}
+
+echo "Grafana running on http://localhost:3000, login as admin/admin"
