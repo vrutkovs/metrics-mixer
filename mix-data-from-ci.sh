@@ -14,7 +14,7 @@ podman rm -f prometheus || true
 git clean -xf prom/
 
 # copy files to prom here
-wget -nv -O /tmp/prom_dump.tar.gz ${METRICS_TAR_URL}
+curl -o /tmp/prom_dump.tar.gz ${METRICS_TAR_URL}
 tar -xzf /tmp/prom_dump.tar.gz -C prom
 
 podman run --rm -d -v $(pwd)/prom:/prometheus:Z --name prometheus --user=0 --network=host docker.io/prom/prometheus:main --config.file=/prometheus/prometheus.yaml --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=1000d --web.enable-admin-api
