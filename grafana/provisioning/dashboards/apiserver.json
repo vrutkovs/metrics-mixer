@@ -22,7 +22,7 @@
   "links": [],
   "panels": [
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -30,292 +30,293 @@
         "y": 0
       },
       "id": 4,
-      "panels": [],
-      "title": "Requests",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "area"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 13,
-        "w": 24,
-        "x": 0,
-        "y": 1
-      },
-      "id": 1,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
+      "panels": [
         {
           "datasource": {
             "type": "victoriametrics-datasource",
             "uid": "P4169E866C3094E38"
           },
-          "editorMode": "code",
-          "expr": "avg by (verb) (sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_tested\", code=\"200\"}[5m] offset $offset)) - sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_base\", code=\"200\"}[5m])))",
-          "interval": "1m",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "apiserver_request_total diff",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "area"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": []
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+          "gridPos": {
+            "h": 13,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 1,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "area"
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "victoriametrics-datasource",
+                "uid": "P4169E866C3094E38"
               },
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
+              "editorMode": "code",
+              "expr": "avg by (verb) (sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_tested\", code=\"200\"}[5m] offset $offset)) - sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_base\", code=\"200\"}[5m])))",
+              "interval": "1m",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "apiserver_request_total diff",
+          "type": "timeseries"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 0,
-        "y": 14
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
         {
-          "editorMode": "code",
-          "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))",
-          "interval": "1m",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "GET/LIST request diff",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
           },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "area"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 0
+                  }
+                ]
+              }
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 0,
+            "y": 14
+          },
+          "id": 2,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
             },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "area"
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "editorMode": "code",
+              "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))",
+              "interval": "1m",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "GET/LIST request diff",
+          "type": "timeseries"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 12,
-        "y": 14
-      },
-      "id": 3,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
         {
-          "editorMode": "code",
-          "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))",
-          "interval": "1m",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "area"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 12,
+            "y": 14
+          },
+          "id": 3,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "editorMode": "code",
+              "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))",
+              "interval": "1m",
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Write request diff",
+          "type": "timeseries"
         }
       ],
-      "title": "Write request diff",
-      "type": "timeseries"
+      "title": "Requests",
+      "type": "row"
     },
     {
       "collapsed": false,
@@ -323,7 +324,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 1
       },
       "id": 5,
       "panels": [],
@@ -394,7 +395,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 2
       },
       "id": 6,
       "options": {
@@ -420,7 +421,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kube API Server",
+      "title": "Kube API Server CPU usage diff",
       "type": "timeseries"
     },
     {
@@ -487,7 +488,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 2
       },
       "id": 7,
       "options": {
@@ -513,7 +514,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kube Scheduler",
+      "title": "Kube Scheduler CPU Usage diff",
       "type": "timeseries"
     },
     {
@@ -580,7 +581,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 35
+        "y": 11
       },
       "id": 8,
       "options": {
@@ -606,7 +607,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kube Controller Manager",
+      "title": "Kube Controller Manager CPU usage diff",
       "type": "timeseries"
     },
     {
@@ -673,7 +674,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 35
+        "y": 11
       },
       "id": 9,
       "options": {
@@ -699,7 +700,7 @@
           "refId": "A"
         }
       ],
-      "title": "Etcd",
+      "title": "Etcd CPU Usage diff",
       "type": "timeseries"
     },
     {
@@ -708,7 +709,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 44
+        "y": 20
       },
       "id": 13,
       "panels": [],
@@ -780,7 +781,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 21
       },
       "id": 14,
       "options": {
@@ -819,7 +820,7 @@
           "refId": "B"
         }
       ],
-      "title": "openshift:memory_usage_bytes",
+      "title": "openshift:memory_usage_bytes ",
       "type": "timeseries"
     },
     {
@@ -887,7 +888,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 55
+        "y": 31
       },
       "id": 16,
       "options": {
@@ -913,7 +914,7 @@
           "refId": "A"
         }
       ],
-      "title": "kube-apiserver memory usage",
+      "title": "kube-apiserver memory usage diff",
       "type": "timeseries"
     },
     {
@@ -981,7 +982,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 55
+        "y": 31
       },
       "id": 15,
       "options": {
@@ -1007,7 +1008,7 @@
           "refId": "A"
         }
       ],
-      "title": "kube-controller-manager memory usage",
+      "title": "kube-controller-manager memory usage diff",
       "type": "timeseries"
     },
     {
@@ -1075,7 +1076,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 41
       },
       "id": 18,
       "options": {
@@ -1101,7 +1102,7 @@
           "refId": "A"
         }
       ],
-      "title": "kube-scheduler memory usage",
+      "title": "kube-scheduler memory usage diff",
       "type": "timeseries"
     },
     {
@@ -1169,7 +1170,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 41
       },
       "id": 17,
       "options": {
@@ -1195,7 +1196,7 @@
           "refId": "A"
         }
       ],
-      "title": "etcd memory usage",
+      "title": "etcd memory usage diff",
       "type": "timeseries"
     },
     {
@@ -1204,118 +1205,12 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 75
+        "y": 51
       },
       "id": 10,
       "panels": [],
       "title": "Request processing",
       "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "area"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 0,
-        "y": 76
-      },
-      "id": 19,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "histogram_quantile(0.95, sum(rate(apiserver_response_sizes_bucket{prowjob=\"$prowjob_tested\"}[1m] offset $offset)) by (le)) - histogram_quantile(0.95, sum(rate(apiserver_response_sizes_bucket{prowjob=\"$prowjob_base\"}[1m])) by (le))",
-          "interval": "1m",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "victoriametrics-datasource",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "expr": "",
-          "hide": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Response size diff",
-      "type": "timeseries"
     },
     {
       "datasource": {
@@ -1382,7 +1277,7 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 76
+        "y": 52
       },
       "id": 20,
       "options": {
@@ -1409,7 +1304,113 @@
           "refId": "A"
         }
       ],
-      "title": "Request processing time",
+      "title": "Request processing time diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 52
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.95, sum(rate(apiserver_response_sizes_bucket{prowjob=\"$prowjob_tested\"}[1m] offset $offset)) by (le)) - histogram_quantile(0.95, sum(rate(apiserver_response_sizes_bucket{prowjob=\"$prowjob_base\"}[1m])) by (le))",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Response size diff",
       "type": "timeseries"
     }
   ],
@@ -1481,6 +1482,6 @@
   "timezone": "utc",
   "title": "API Server results comparison",
   "uid": "ee2cg480pl728f",
-  "version": 59,
+  "version": 71,
   "weekStart": ""
 }
