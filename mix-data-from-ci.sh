@@ -17,7 +17,7 @@ git clean -xf prom/
 curl -o /tmp/prom_dump.tar.gz ${METRICS_TAR_URL}
 tar -xzf /tmp/prom_dump.tar.gz -C prom
 
-podman run --rm -d -v $(pwd)/prom:/prometheus:Z --name prometheus --user=0 --network=host docker.io/prom/prometheus:main --config.file=/prometheus/prometheus.yaml --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=1000d --web.enable-admin-api
+podman run -d -v $(pwd)/prom:/prometheus:Z --name prometheus --user=0 --network=host docker.io/prom/prometheus:main --config.file=/prometheus/prometheus.yaml --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=1000d --web.enable-admin-api
 until curl --fail -XPOST localhost:9090/api/v1/admin/tsdb/snapshot; do
     printf '.'
     sleep 5
