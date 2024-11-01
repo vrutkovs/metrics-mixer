@@ -18,11 +18,11 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -30,293 +30,292 @@
         "y": 0
       },
       "id": 4,
-      "panels": [
-        {
-          "datasource": {
-            "type": "victoriametrics-datasource",
-            "uid": "P4169E866C3094E38"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "area"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "red",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 0
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 13,
-            "w": 24,
-            "x": 0,
-            "y": 1
-          },
-          "id": 1,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "victoriametrics-datasource",
-                "uid": "P4169E866C3094E38"
-              },
-              "editorMode": "code",
-              "expr": "avg by (verb) (sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_tested\", code=\"200\"}[5m] offset $offset)) - sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_base\", code=\"200\"}[5m])))",
-              "interval": "1m",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "apiserver_request_total diff",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "victoriametrics-datasource",
-            "uid": "P4169E866C3094E38"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "area"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "red",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 0
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 11,
-            "w": 12,
-            "x": 0,
-            "y": 14
-          },
-          "id": 2,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "editorMode": "code",
-              "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))",
-              "interval": "1m",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "GET/LIST request diff",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "victoriametrics-datasource",
-            "uid": "P4169E866C3094E38"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "area"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "red",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 0
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 11,
-            "w": 12,
-            "x": 12,
-            "y": 14
-          },
-          "id": 3,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "editorMode": "code",
-              "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))",
-              "interval": "1m",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Write request diff",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "Requests",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "avg by (verb) (sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_tested\", code=\"200\"}[5m] offset $offset)) - sum by(resource, verb) \n(irate(apiserver_request_total{job=\"apiserver\", prowjob=\"$prowjob_base\", code=\"200\"}[5m])))",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "apiserver_request_total diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb=~\"GET|LIST\",prowjob=\"$prowjob_base\"}[5m]))",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "GET/LIST request diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_tested\"}[5m] offset $offset)) - sum(irate(apiserver_request_total{code=~\"20.*\",verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))/sum(irate(apiserver_request_total{verb!~\"GET|LIST|WATCH|CONNECT\",prowjob=\"$prowjob_base\"}[5m]))",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Write request diff",
+      "type": "timeseries"
     },
     {
       "collapsed": false,
@@ -324,7 +323,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 1
+        "y": 25
       },
       "id": 5,
       "panels": [],
@@ -395,7 +394,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 2
+        "y": 26
       },
       "id": 6,
       "options": {
@@ -488,7 +487,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 2
+        "y": 26
       },
       "id": 7,
       "options": {
@@ -581,7 +580,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 11
+        "y": 35
       },
       "id": 8,
       "options": {
@@ -674,7 +673,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 11
+        "y": 35
       },
       "id": 9,
       "options": {
@@ -709,7 +708,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 44
       },
       "id": 13,
       "panels": [],
@@ -781,7 +780,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 45
       },
       "id": 14,
       "options": {
@@ -882,13 +881,158 @@
           },
           "unit": "decbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"vanilla\", apiserver=\"kube-apiserver\"}) offset 0m - sum(go_memstats_alloc_bytes{prowjob=\"protobuf\", apiserver=\"kube-apiserver\"})[1m],60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 31
+        "y": 55
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", apiserver=\"kube-apiserver\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", apiserver=\"kube-apiserver\"})",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", apiserver=\"kube-apiserver\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", apiserver=\"kube-apiserver\"})[1m],60)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "kube-apiserver memalloc usage diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"vanilla\", apiserver=\"kube-apiserver\"}) offset 0m - sum(go_memstats_heap_inuse_bytes{prowjob=\"protobuf\", apiserver=\"kube-apiserver\"})[1m], 60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 55
       },
       "id": 16,
       "options": {
@@ -907,108 +1051,27 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-apiserver\"}) offset $offset - sum(container_memory_usage_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-apiserver\"})",
+          "expr": "sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", apiserver=\"kube-apiserver\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", apiserver=\"kube-apiserver\"})",
           "interval": "1m",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
-        }
-      ],
-      "title": "kube-apiserver memory usage diff",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "area"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "decbytes"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 31
-      },
-      "id": 15,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
         {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-controller-manager\"}) offset $offset - sum(container_memory_usage_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-controller-manager\"})",
-          "interval": "1m",
+          "expr": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", apiserver=\"kube-apiserver\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", apiserver=\"kube-apiserver\"})[1m], 60)",
+          "hide": false,
+          "interval": "5m",
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "B"
         }
       ],
-      "title": "kube-controller-manager memory usage diff",
+      "title": "kube-apiserver heap inuse diff",
       "type": "timeseries"
     },
     {
@@ -1070,15 +1133,34 @@
           },
           "unit": "decbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"vanilla\", namespace=\"openshift-kube-scheduler\"}) offset 0m - sum(go_memstats_alloc_bytes{prowjob=\"protobuf\", namespace=\"openshift-kube-scheduler\"})[1m],60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 41
+        "y": 65
       },
-      "id": 18,
+      "id": 22,
       "options": {
         "legend": {
           "calcs": [],
@@ -1095,14 +1177,27 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-scheduler\"}) offset $offset - sum(container_memory_usage_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-scheduler\"})",
+          "expr": "sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-scheduler\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-scheduler\"})",
           "interval": "1m",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-scheduler\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-scheduler\"})[1m],60)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "kube-scheduler memory usage diff",
+      "title": "scheduler memalloc usage diff",
       "type": "timeseries"
     },
     {
@@ -1164,15 +1259,34 @@
           },
           "unit": "decbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"vanilla\", namespace=\"openshift-kube-scheduler\"}) offset 0m - sum(go_memstats_heap_inuse_bytes{prowjob=\"protobuf\", namespace=\"openshift-kube-scheduler\"})[1m], 60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 41
+        "y": 65
       },
-      "id": 17,
+      "id": 23,
       "options": {
         "legend": {
           "calcs": [],
@@ -1189,14 +1303,531 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum(container_memory_usage_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-etcd\"}) offset $offset - sum(container_memory_usage_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-etcd\"})",
+          "expr": "sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-scheduler\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-scheduler\"})",
           "interval": "1m",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-scheduler\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-scheduler\"})[1m], 60)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "etcd memory usage diff",
+      "title": "scheduler heap inuse diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"vanilla\", namespace=\"openshift-kube-controller-manager\"}) offset 0m - sum(go_memstats_alloc_bytes{prowjob=\"protobuf\", namespace=\"openshift-kube-controller-manager\"})[1m],60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 75
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-controller-manager\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-controller-manager\"})",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-controller-manager\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-controller-manager\"})[1m],60)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "kcm memalloc usage diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"vanilla\", namespace=\"openshift-kube-controller-manager\"}) offset 0m - sum(go_memstats_heap_inuse_bytes{prowjob=\"protobuf\", namespace=\"openshift-kube-controller-manager\"})[1m], 60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 75
+      },
+      "id": 25,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-controller-manager\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-controller-manager\"})",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-kube-controller-manager\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-kube-controller-manager\"})[1m], 60)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "kcm heap inuse diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"vanilla\", namespace=\"openshift-etcd\"}) offset 0m - sum(go_memstats_alloc_bytes{prowjob=\"protobuf\", namespace=\"openshift-etcd\"})[1m],60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 85
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-etcd\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-etcd\"})",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "predict_linear(sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-etcd\"}) offset $offset - sum(go_memstats_alloc_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-etcd\"})[1m],60)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "etcd memalloc usage diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"vanilla\", namespace=\"openshift-etcd\"}) offset 0m - sum(go_memstats_heap_inuse_bytes{prowjob=\"protobuf\", namespace=\"openshift-etcd\"})[1m], 60)"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 85
+      },
+      "id": 27,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-etcd\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-etcd\"})",
+          "interval": "1m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "P4169E866C3094E38"
+          },
+          "editorMode": "code",
+          "expr": "predict_linear(sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_base\", namespace=\"openshift-etcd\"}) offset $offset - sum(go_memstats_heap_inuse_bytes{prowjob=\"$prowjob_tested\", namespace=\"openshift-etcd\"})[1m], 60)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "etcd heap inuse diff",
       "type": "timeseries"
     },
     {
@@ -1205,107 +1836,12 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 95
       },
       "id": 10,
       "panels": [],
       "title": "Request processing",
       "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "area"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 12,
-        "y": 52
-      },
-      "id": 20,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "histogram_quantile(0.95, sum(rate(rest_client_request_duration_seconds_bucket{prowjob=\"$prowjob_tested\"}[1m])) by (le)) - histogram_quantile(0.95, sum(rate(rest_client_request_duration_seconds_bucket{prowjob=\"$prowjob_base\"}[1m] offset $offset)) by (le))",
-          "hide": false,
-          "interval": "2m",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Request processing time diff",
-      "type": "timeseries"
     },
     {
       "datasource": {
@@ -1372,7 +1908,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 52
+        "y": 96
       },
       "id": 19,
       "options": {
@@ -1411,6 +1947,101 @@
         }
       ],
       "title": "Response size diff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 96
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.95, sum(rate(rest_client_request_duration_seconds_bucket{prowjob=\"$prowjob_tested\"}[1m])) by (le)) - histogram_quantile(0.95, sum(rate(rest_client_request_duration_seconds_bucket{prowjob=\"$prowjob_base\"}[1m] offset $offset)) by (le))",
+          "hide": false,
+          "interval": "2m",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Request processing time diff",
       "type": "timeseries"
     }
   ],
@@ -1475,13 +2106,13 @@
     ]
   },
   "time": {
-    "from": "2024-10-29T11:45:00.000Z",
-    "to": "2024-10-29T14:45:00.000Z"
+    "from": "2024-11-01T12:35:00.000Z",
+    "to": "2024-11-01T13:05:00.000Z"
   },
   "timepicker": {},
   "timezone": "utc",
   "title": "API Server results comparison",
   "uid": "ee2cg480pl728f",
-  "version": 71,
+  "version": 13,
   "weekStart": ""
 }
